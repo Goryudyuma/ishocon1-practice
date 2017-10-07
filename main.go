@@ -17,6 +17,7 @@ import (
 var db *sql.DB
 
 func main() {
+gin.SetMode(gin.ReleaseMode)
 	// database setting
 	user := os.Getenv("ISHOCON1_DB_USER")
 	pass := os.Getenv("ISHOCON1_DB_PASSWORD")
