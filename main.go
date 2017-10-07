@@ -22,7 +22,6 @@ var (
 )
 
 func main() {
-gin.SetMode(gin.ReleaseMode)
 	// database setting
 	user := os.Getenv("ISHOCON1_DB_USER")
 	pass := os.Getenv("ISHOCON1_DB_PASSWORD")
@@ -30,6 +29,7 @@ gin.SetMode(gin.ReleaseMode)
 	db, _ = sql.Open("mysql", user+":"+pass+"@/"+dbname)
 	db.SetMaxIdleConns(5)
 
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 	// load templates
 	r.Use(static.Serve("/css", static.LocalFile("public/css", true)))

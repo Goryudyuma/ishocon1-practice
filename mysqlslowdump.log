@@ -1,77 +1,77 @@
-Count: 10074  Time=0.00s (20s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 20074  Time=0.00s (38s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   UPDATE products SET comment_count = (SELECT count(N) FROM comments WHERE product_id = N GROUP BY product_id) WHERE id = N
 
-Count: 1697  Time=0.01s (10s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 3837  Time=0.01s (20s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   INSERT INTO histories (product_id, user_id, created_at) VALUES ('S', N, 'S')
 
-Count: 1083  Time=0.01s (9s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 2256  Time=0.01s (18s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   UPDATE users SET last_login = 'S' WHERE id = N
 
-Count: 126545  Time=0.00s (4s)  Lock=0.00s (0s)  Rows=10.5 (1326758), 2users@localhost
+Count: 268513  Time=0.00s (8s)  Lock=0.00s (0s)  Rows=11.3 (3034514), 2users@localhost
   #
 
-Count: 6410  Time=0.00s (3s)  Lock=0.00s (0s)  Rows=185.5 (1189025), ishocon[ishocon]@localhost
+Count: 14449  Time=0.00s (8s)  Lock=0.00s (0s)  Rows=190.9 (2758746), ishocon[ishocon]@localhost
   SELECT h.product_id, h.created_at FROM histories as h WHERE h.user_id = N ORDER BY h.id DESC
 
-Count: 1  Time=2.67s (2s)  Lock=0.00s (0s)  Rows=10000.0 (10000), ishocon[ishocon]@localhost
+Count: 2  Time=2.61s (5s)  Lock=0.00s (0s)  Rows=10000.0 (20000), ishocon[ishocon]@localhost
   SELECT * FROM products ORDER BY id
 
-Count: 417  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 944  Time=0.00s (3s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   INSERT INTO comments (product_id, user_id, content, created_at) VALUES ('S', N, 'S', 'S')
 
-Count: 417  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 944  Time=0.00s (3s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   UPDATE products SET comment_count = comment_count + N WHERE id = 'S'
 
-Count: 10000  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=5.0 (50000), ishocon[ishocon]@localhost
-  SELECT comments.content, users.name FROM comments INNER JOIN users ON comments.user_id = users.id WHERE product_id = N ORDER BY comments.id DESC LIMIT N
-
-Count: 1083  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=1.0 (1083), ishocon[ishocon]@localhost
+Count: 2256  Time=0.00s (3s)  Lock=0.00s (0s)  Rows=1.0 (2256), ishocon[ishocon]@localhost
   SELECT * FROM users WHERE email = 'S' LIMIT N
 
-Count: 2983  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (2982), ishocon[ishocon]@localhost
+Count: 20000  Time=0.00s (3s)  Lock=0.00s (0s)  Rows=5.0 (100000), ishocon[ishocon]@localhost
+  SELECT comments.content, users.name FROM comments INNER JOIN users ON comments.user_id = users.id WHERE product_id = N ORDER BY comments.id DESC LIMIT N
+
+Count: 6176  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=1.0 (6174), ishocon[ishocon]@localhost
   SELECT count(N) as count FROM histories WHERE product_id = N AND user_id = N
 
-Count: 16652  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.4 (7035), ishocon[ishocon]@localhost
+Count: 36089  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=0.4 (15320), ishocon[ishocon]@localhost
   SELECT * FROM users WHERE id = N LIMIT N
 
-Count: 2983  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=20.0 (59569), ishocon[ishocon]@localhost
+Count: 6176  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=20.0 (123401), ishocon[ishocon]@localhost
   SELECT * FROM comments WHERE product_id = N
 
-Count: 7488  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 16874  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   SELECT * FROM users WHERE id = NULL LIMIT N
 
-Count: 1479  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (1479), ishocon[ishocon]@localhost
+Count: 3044  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (3044), ishocon[ishocon]@localhost
   SELECT @@max_allowed_packet
 
-Count: 1083  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (1083), ishocon[ishocon]@localhost
+Count: 2256  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (2256), ishocon[ishocon]@localhost
   SELECT email, password FROM users WHERE id = N LIMIT N
 
-Count: 417  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.7 (304), ishocon[ishocon]@localhost
+Count: 944  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.7 (651), ishocon[ishocon]@localhost
   SELECT users.name FROM users WHERE id = N
 
-Count: 2  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (2), ishocon[ishocon]@localhost
+Count: 2  Time=0.01s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+  DELETE FROM histories WHERE id > N
+
+Count: 2  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+  DELETE FROM comments WHERE id > N
+
+Count: 4  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (4), ishocon[ishocon]@localhost
   SELECT SUM(p.price) as total_pay
   FROM histories as h
   INNER JOIN products as p
   ON p.id = h.product_id
   WHERE h.user_id = N
 
-Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 2  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   DELETE FROM users WHERE id > N
 
-Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
-  DELETE FROM histories WHERE id > N
-
-Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 2  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   DELETE FROM products WHERE id > N
-
-Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
-  DELETE FROM comments WHERE id > N
 
 Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
   administrator command: Ping
 
-Count: 62789  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
+Count: 133279  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
   administrator command: Close stmt
 
 Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
@@ -81,9 +81,9 @@ Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
   SET timestamp=N;
   UPDATE products SET comment_count = (SELECT count(N) FROM comments WHERE product_id = N GROUP BY product_id) WHERE id = N
 
-Count: 62789  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
+Count: 133279  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
   administrator command: Prepare
 
-Count: 966  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
+Count: 1954  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
   administrator command: Quit
 

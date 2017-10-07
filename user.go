@@ -133,7 +133,7 @@ func (u *User) CreateComment(pid string, content string) {
 			fmt.Println(len(ProductDB))
 			cw.Content = content
                         err = rows2.Scan(&cw.Writer)
-			ProductDB[pidint].Comments, ProductDB[pidint].Comments[0] = append(ProductDB[pidint].Comments[0:1], ProductDB[pidint].Comments[0:]...), cw
+			ProductDB[pidint].Comments, ProductDB[pidint].Comments[0] = append(ProductDB[pidint].Comments[0:1], ProductDB[pidint].Comments[0:4]...), cw
                 }
 	ProductDB[pidint].CommentCount++
 
