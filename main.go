@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 	"unicode/utf8"
+	"fmt"
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/contrib/static"
@@ -15,6 +16,10 @@ import (
 )
 
 var db *sql.DB
+
+var (
+	ProductDB []ProductWithComments
+)
 
 func main() {
 gin.SetMode(gin.ReleaseMode)
@@ -102,6 +107,7 @@ gin.SetMode(gin.ReleaseMode)
 			}
 
 			var newCW []CommentWriter
+			p.Comments = append(p.Comments[:5])
 			for _, c := range p.Comments {
 				if utf8.RuneCountInString(c.Content) > 25 {
 					c.Content = string([]rune(c.Content)[:25]) + "…"
@@ -217,6 +223,33 @@ gin.SetMode(gin.ReleaseMode)
 		db.Exec("DELETE FROM products WHERE id > 10000")
 		db.Exec("DELETE FROM comments WHERE id > 200000")
 		db.Exec("DELETE FROM histories WHERE id > 500000")
+		for id := 1; id <= 10000; id++ {
+			db.Exec("UPDATE products SET comment_count = (SELECT count(1) FROM comments WHERE product_id = ? GROUP BY product_id) WHERE id = ?", id, id)
+		}
+		ProductDB = make([]ProductWithComments, 1, 10001)
+		rows, err := db.Query("SELECT * FROM products ORDER BY id")
+        if err != nil {
+                fmt.Println(err)
+        }
+
+        defer rows.Close()
+        for rows.Next() {
+                p := ProductWithComments{}
+                err = rows.Scan(&p.ID, &p.Name, &p.Description, &p.ImagePath, &p.Price, &p.CreatedAt, &p.CommentCount)
+		rows2, err := db.Query("SELECT comments.content, users.name FROM comments INNER JOIN users ON comments.user_id = users.id WHERE product_id = ? ORDER BY comments.id DESC LIMIT 5", p.ID)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		for rows2.Next(){
+			var cw CommentWriter
+			err = rows2.Scan(&cw.Content, &cw.Writer)
+			p.Comments = append(p.Comments, cw)
+		}
+		rows2.Close()
+		ProductDB=append(ProductDB, p)
+	}
+fmt.Println(len(ProductDB))
 
 		c.String(http.StatusOK, "Finish")
 	})

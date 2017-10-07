@@ -1,1 +1,0 @@
- tee /var/log/nginx/access.log

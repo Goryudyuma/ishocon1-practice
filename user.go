@@ -2,7 +2,8 @@ package main
 
 import (
 	"time"
-
+	"fmt"
+	"strconv"
 	"github.com/gin-gonic/contrib/sessions"
 )
 
@@ -95,6 +96,23 @@ func (u *User) CreateComment(pid string, content string) {
 	db.Exec(
 		"INSERT INTO comments (product_id, user_id, content, created_at) VALUES (?, ?, ?, ?)",
 		pid, u.ID, content, time.Now())
+	db.Exec("UPDATE products SET comment_count = comment_count + 1 WHERE id = ?", pid)
+        pidint, _ := strconv.Atoi(pid)
+
+                rows2, err := db.Query("SELECT users.name FROM users WHERE id = ?", u.ID)
+                if err != nil {
+                        fmt.Println(err)
+                }
+                for rows2.Next(){
+                        var cw CommentWriter
+			fmt.Println(pidint)
+			fmt.Println(len(ProductDB))
+			cw.Content = content
+                        err = rows2.Scan(&cw.Writer)
+			ProductDB[pidint].Comments, ProductDB[pidint].Comments[0] = append(ProductDB[pidint].Comments[0:1], ProductDB[pidint].Comments[0:]...), cw
+                }
+	ProductDB[pidint].CommentCount++
+
 }
 
 func (u *User) UpdateLastLogin() {
