@@ -56,6 +56,7 @@ func currentUser(session sessions.Session) User {
 
 // BuyingHistory : products which user had bought
 func (u *User) BuyingHistory() (products []Product) {
+/*
 	rows, err := db.Query(
 		"SELECT p.id, p.name, p.description, p.image_path, p.price, h.created_at "+
 			"FROM histories as h "+
@@ -81,6 +82,29 @@ func (u *User) BuyingHistory() (products []Product) {
 		products = append(products, p)
 	}
 
+	return
+*/
+	rows, err := db.Query("SELECT h.product_id, h.created_at FROM histories as h WHERE h.user_id = ? ORDER BY h.id DESC", u.ID)
+	if err != nil {
+		return nil
+	}
+	for rows.Next() {
+		p := Product{}
+		var cAt string
+		fmt := "2006-01-02 15:04:05"
+		err = rows.Scan(&p.ID, &cAt)
+		tmp, _ := time.Parse(fmt, cAt)
+		p.CreatedAt = (tmp.Add(9 * time.Hour)).Format(fmt)
+		px := ProductDB[p.ID]
+		p.Name = px.Name
+		p.Description = px.Description
+		p.ImagePath = px.ImagePath
+		p.Price = px.Price
+		if err != nil {
+                        panic(err.Error())
+                }
+		products = append(products, p)
+	}
 	return
 }
 

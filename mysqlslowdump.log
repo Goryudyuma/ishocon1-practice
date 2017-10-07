@@ -1,59 +1,53 @@
-Count: 5678  Time=0.01s (36s)  Lock=0.00s (0s)  Rows=209.6 (1190191), ishocon[ishocon]@localhost
-  SELECT p.id, p.name, p.description, p.image_path, p.price, h.created_at FROM histories as h LEFT OUTER JOIN products as p ON h.product_id = p.id WHERE h.user_id = N ORDER BY h.id DESC
-
-Count: 10000  Time=0.00s (16s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 10074  Time=0.00s (20s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   UPDATE products SET comment_count = (SELECT count(N) FROM comments WHERE product_id = N GROUP BY product_id) WHERE id = N
 
-Count: 1637  Time=0.00s (7s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 1697  Time=0.01s (10s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   INSERT INTO histories (product_id, user_id, created_at) VALUES ('S', N, 'S')
 
-Count: 1008  Time=0.00s (4s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 1083  Time=0.01s (9s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   UPDATE users SET last_login = 'S' WHERE id = N
 
-Count: 118843  Time=0.00s (4s)  Lock=0.00s (0s)  Rows=11.3 (1341107), 2users@localhost
+Count: 126545  Time=0.00s (4s)  Lock=0.00s (0s)  Rows=10.5 (1326758), 2users@localhost
   #
 
-Count: 1  Time=2.59s (2s)  Lock=0.00s (0s)  Rows=10000.0 (10000), ishocon[ishocon]@localhost
+Count: 6410  Time=0.00s (3s)  Lock=0.00s (0s)  Rows=185.5 (1189025), ishocon[ishocon]@localhost
+  SELECT h.product_id, h.created_at FROM histories as h WHERE h.user_id = N ORDER BY h.id DESC
+
+Count: 1  Time=2.67s (2s)  Lock=0.00s (0s)  Rows=10000.0 (10000), ishocon[ishocon]@localhost
   SELECT * FROM products ORDER BY id
 
-Count: 402  Time=0.01s (2s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 417  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   INSERT INTO comments (product_id, user_id, content, created_at) VALUES ('S', N, 'S', 'S')
 
-Count: 402  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 417  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   UPDATE products SET comment_count = comment_count + N WHERE id = 'S'
-
-Count: 1008  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=1.0 (1008), ishocon[ishocon]@localhost
-  SELECT * FROM users WHERE email = 'S' LIMIT N
 
 Count: 10000  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=5.0 (50000), ishocon[ishocon]@localhost
   SELECT comments.content, users.name FROM comments INNER JOIN users ON comments.user_id = users.id WHERE product_id = N ORDER BY comments.id DESC LIMIT N
 
-Count: 2767  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (2765), ishocon[ishocon]@localhost
+Count: 1083  Time=0.00s (1s)  Lock=0.00s (0s)  Rows=1.0 (1083), ishocon[ishocon]@localhost
+  SELECT * FROM users WHERE email = 'S' LIMIT N
+
+Count: 2983  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (2982), ishocon[ishocon]@localhost
   SELECT count(N) as count FROM histories WHERE product_id = N AND user_id = N
 
-Count: 15265  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.4 (6538), ishocon[ishocon]@localhost
+Count: 16652  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.4 (7035), ishocon[ishocon]@localhost
   SELECT * FROM users WHERE id = N LIMIT N
 
-Count: 2767  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=20.0 (55292), ishocon[ishocon]@localhost
+Count: 2983  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=20.0 (59569), ishocon[ishocon]@localhost
   SELECT * FROM comments WHERE product_id = N
 
-Count: 6592  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+Count: 7488  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   SELECT * FROM users WHERE id = NULL LIMIT N
 
-Count: 1506  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (1506), ishocon[ishocon]@localhost
+Count: 1479  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (1479), ishocon[ishocon]@localhost
   SELECT @@max_allowed_packet
 
-Count: 1008  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (1008), ishocon[ishocon]@localhost
+Count: 1083  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (1083), ishocon[ishocon]@localhost
   SELECT email, password FROM users WHERE id = N LIMIT N
 
-Count: 402  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.7 (286), ishocon[ishocon]@localhost
+Count: 417  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.7 (304), ishocon[ishocon]@localhost
   SELECT users.name FROM users WHERE id = N
-
-Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
-  DELETE FROM histories WHERE id > N
-
-Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
-  DELETE FROM comments WHERE id > N
 
 Count: 2  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (2), ishocon[ishocon]@localhost
   SELECT SUM(p.price) as total_pay
@@ -66,18 +60,28 @@ Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@local
   DELETE FROM users WHERE id > N
 
 Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+  DELETE FROM histories WHERE id > N
+
+Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
   DELETE FROM products WHERE id > N
+
+Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), ishocon[ishocon]@localhost
+  DELETE FROM comments WHERE id > N
 
 Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
   administrator command: Ping
 
-Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
-  
-
-Count: 58938  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
+Count: 62789  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
   administrator command: Close stmt
 
-Count: 58938  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
+Count: 1  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
+  Time: N-N-07T08:N:N.931851Z
+  # User@Host: ishocon[ishocon] @ localhost [N.N.N.N]  Id:  N
+  # Query_time: N.N  Lock_time: N.N Rows_sent: N  Rows_examined: N
+  SET timestamp=N;
+  UPDATE products SET comment_count = (SELECT count(N) FROM comments WHERE product_id = N GROUP BY product_id) WHERE id = N
+
+Count: 62789  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
   administrator command: Prepare
 
 Count: 966  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (0), 0users@0hosts
